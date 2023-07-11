@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>阿尔茨海默症研究成果个数条形图</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    .bar {
+      fill: steelblue;
+    }
+  </style>
+</head>
+<body>
+  <h2>不同国家阿尔茨海默症研究成果个数</h2>
+
+  <svg id="chart"></svg>
+
+  <script>
+    d3.csv('GDO_q20.csv').then(function(data) {
+      var svgWidth = 400;
+      var svgHeight = 300;
+      var margin = { top: 20, right: 20, bottom: 30, left: 40 };
+      var width = svgWidth - margin.left - margin.right;
+      var height = svgHeight - margin.top - margin.bottom;
+
+      var svg = d3.select('#chart')
+        .attr('width', svgWidth)
+        .attr('height', svgHeight);
+
+      var g = svg.append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+      var x = d3.scaleBand()
+        .rangeRound([0, width])
+        .padding(0.1)
+        .domain(data.map(function(d) { return d.country; }));
+
+      var y = d3.scaleLinear()
+        .rangeRound([height, 0])
+        .domain([0, d3.max(data, function(d) { return +d.count; })]);
+
+      g.append('g')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(d3.axisBottom(x));
+
+      g.append('g')
+        .call(d3.axisLeft(y).ticks(10))
+        .append('text')
+        .attr('fill', '#000')
+        .attr('transform', 'rotate(-90)')
+        .attr('y', 6)
+        .attr('dy', '0.71em')
+        .attr('text-anchor', 'end')
+        .text('研究成果个数');
+
+      g.selectAll('.bar')
+        .data(data)
+        .enter().append('rect')
+        .attr('class', 'bar')
+        .attr('x', function(d) { return x(d.country); })
+        .attr('y', function(d) { return y(+d.count); })
+        .attr('width', x.bandwidth())
+        .attr('height', function(d) { return height - y(+d.count); });
+    });
+  </script>
+</body>
+</html>

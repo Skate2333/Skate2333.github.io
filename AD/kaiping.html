@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Parallax Scrolling Website</title>
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <section>
+    <img src="./assets/images/stars.png" id="stars">
+    <img src="./assets/images/moon.png" id="moon">
+    <img src="./assets/images/mountains_behind.png" id="mountains_behind">
+    <h2 id="text">走进他们的世界</h2>
+    <button class="btn" onclick="window.location.href='index.html'" id="btn">直接进站</button>
+    <button class="btn" onclick="window.location.href='sucai.html'" id="btn">点击探索</button>
+    <img src="./assets/images/mountains_front.png" id="mountains_front">
+  </section>
+  <div class="sec" id="sec">
+    <h2>也许,你从未了解过阿尔兹海默症</h2>
+    <p>在电视上、在报纸里或者是亲朋的口中，会听到那样一两个不幸的人儿患上了“阿尔兹海默症”。病人们逐渐成为“不正常的人”，给家庭带来了沉重的负担，自己也活在痛苦与折磨之中。大家畏惧而祈祷这种可怕的病症远离自己，却很少去深入了解这病症缘由何来、症状为何、如何治愈。让我们一同走入阿尔兹海默症患者的世界，直面这只大脑的“橡皮擦”。</p>
+  </div>
+
+  <script>
+    let stars = document.getElementById('stars')
+    let moon = document.getElementById('moon')
+    let mountains_behind = document.getElementById('mountains_behind')
+    let text = document.getElementById('text')
+    let btn = document.getElementById('btn')
+    let mountains_front = document.getElementById('mountains_front')
+    let header = document.querySelector('header')
+
+    window.addEventListener('scroll', function(){
+      let value = window.scrollY;
+      stars.style.left = value * 0.25 + 'px'
+      moon.style.top = value * 1.05 + 'px'
+      mountains_behind.style.top = value * 0.5 + 'px'
+      mountains_front.style.top = value * 0 + 'px'
+      text.style.marginRight = value * 4 + 'px'
+      text.style.marginTop = value * 1.5 + 'px'
+      btn.style.marginTop = value * 1.5 + 'px'
+      header.style.top = value * 0.5 + 'px'
+    })
+  </script>
+</body>
+</html>

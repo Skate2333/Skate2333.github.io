@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片轮播</title>
+    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+    <style>
+        @font-face {
+            font-family: "Alimama_DongFangDaKai_Regular";
+            src: url(./font/Alimama_DongFangDaKai_Regular.ttf);
+        }
+
+        body {
+            background-color: #eaeaea;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f5f5f5;
+            padding: 50px;
+            box-shadow: 0 30px 50px #dbdbdb;
+        }
+
+        #slide {
+            width: max-content;
+            margin-top: 50px;
+        }
+
+        .item {
+            width: 200px;
+            height: 300px;
+            background-position: 50%, 50%;
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            /* transform: translateY(-50%); */
+            margin-top: -150px;
+            border-radius: 20px;
+            box-shadow: 0 30px 50px #505050;
+            transition: .5s;
+        }
+
+        .item:nth-child(1),
+        .item:nth-child(2) {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* transform: translateY(0); */
+            margin-top: 0px;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .item:nth-child(3) {
+            left: 60%;
+        }
+
+        .item:nth-child(4) {
+            left: calc(60% + 220px);
+        }
+
+        .item:nth-child(5) {
+            left: calc(60% + 440px);
+        }
+
+        .item .content {
+            width: 300px;
+            position: absolute;
+            left: 30%;
+            top: 48%;
+            transform: translateY(-50%);
+            font-family: "Alimama_DongFangDaKai_Regular";
+            color: #c7ecee;
+            display: none;
+        }
+
+        .item .content button {
+            border-radius: 10px;
+            background-color: #dff9fb;
+            cursor: pointer;
+        }
+
+        .item:nth-child(2) .content {
+            display: block;
+        }
+
+        .item .name {
+            font-size: 40px;
+            font-weight: bold;
+            opacity: 0;
+            animation: showcontent 1s ease-in-out 1 forwards;
+        }
+
+        .item .des {
+            margin: 20px 0;
+            opacity: 0;
+            animation: showcontent 1s ease-in-out 0.3s 1 forwards;
+        }
+
+        .item button {
+            padding: 10px 20px;
+            border: none;
+            opacity: 0;
+            animation: showcontent 1s ease-in-out 0.6s 1 forwards;
+        }
+
+        @keyframes showcontent {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+                filter: blur(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .buttons {
+            width: auto;
+            position: absolute;
+            bottom: 200px;
+            margin-left: -50px;
+            text-align: center;
+            left: 75%;
+        }
+
+        .s_button {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: gray;
+            background-color: rgb(255, 255, 255, 0.3);
+            font-size: 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            border: 1px solid #555;
+            margin: 0 10px;
+            transition: .5s;
+        }
+
+        .s_button:hover {
+            cursor: pointer;
+            background-color: #ccc;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px
+        }
+
+        .icon_box {
+            position: absolute;
+            left: 35%;
+            bottom: -7%;
+            opacity: 0;
+            animation: showcontent 1s ease-in-out 0.6s 1 forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="slide">
+            <div class="item" style="background-image: url(./assets/images/13.jpg);">
+                <div class="content">
+                    <div class="name">记忆缺失</div>
+                    <div class="des">「不记得了，我只知道它不见了，哪里都找不到。」近的、远的，曾经的经历被随机剥夺，构成混乱与空白的记忆</div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(./assets/images/14.jpg);">
+                <div class="content">
+                    <div class="name">性格变化</div>
+                    <div class="des">「为什么要发脾气？你以前明明不是这样的！」性格逐渐变得敏感、多疑、自我，成为了家人眼里的“作精”</div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(./assets/images/2.png);">
+                <div class="content">
+                    <div class="name">严重失能</div>
+                    <div class="des">失去语言表达能力、不能识别熟悉的脸、无法执行和模仿动作……生活必备技能不断丧失，独立生活成为困难,需要被照顾</div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(./assets/images/3.jpeg);">
+                <div class="content">
+                    <div class="name">认知障碍</div>
+                    <div class="des">注意力与理解力受到损害，精神疲劳、思维迟缓，倾向于遵循过去的记忆而让他人感到固执</div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(./assets/images/10.jpg);">
+                <div class="content">
+                    <div class="name">这是他们的世界</div>
+                    <div class="des">“大脑的橡皮擦”擦去了他们的记忆，让他们的人生成为割裂的两段，在清醒又无知的状态下愈行愈远。但是走向深渊，并非唯一的结局。</div>
+                      <a href="index.html" id="explore-btn">
+                        <button type="button" name="button">进入网站</button></a>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <div class="s_button"><</div>
+            <div class="s_button">></div>
+        </div>
+    </div>
+    <script>
+        let _direction = true;
+        let _move = () => {
+            let lists = document.querySelectorAll(".item")
+            if (_direction) {
+                document.querySelector("#slide").appendChild(lists[0]);
+            } else {
+                document.querySelector("#slide").prepend(lists[lists.length - 1]);
+            }
+        }
+        let timer = setInterval(_move, 2500);
+        document.querySelector(".container").addEventListener("mouseover", () => {
+            clearInterval(timer);
+        });
+        document.querySelector(".container").addEventListener("mouseout", () => {
+            timer = setInterval(_move, 2500)
+        });
+        document.querySelectorAll(".s_button")[1].onclick = () => {
+            _direction = true;
+            _move();
+        }
+        document.querySelectorAll(".s_button")[0].onclick = () => {
+            _direction = false;
+            _move();
+        }
+    </script>
+</body>
+
+</html>
